@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import ash from '../../public/ash.svg'
+import ash from '@/public/ash.svg'
 
 const Profile = () => {
   return (

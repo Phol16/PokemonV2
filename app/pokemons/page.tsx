@@ -1,9 +1,9 @@
 import { fetchPokemon } from '@/libs/fetchPokemons';
-import PokemonCard from '../components/PokemonCard';
+import PokemonCard from '../../components/PokemonCard';
 import { fetchPokemonDetails } from '@/libs/fetchPokemonDetails';
 import { ReactNode } from 'react';
 import Image from 'next/image';
-import pokeBall from '../../public/pokeball.svg'
+import pokeBall from '@/public/pokeball.svg'
 
 export default async function Pokemons() {
   const pokemons = await fetchPokemon();
@@ -11,7 +11,7 @@ export default async function Pokemons() {
   const fetchEachPokemon =(results:[{name:string, url:string}]) => {
     return results.map(async(e)=>{
       const pokemonDetails = await fetchPokemonDetails(e.url)
-      return (<PokemonCard name={pokemonDetails.name} types={pokemonDetails.types} image={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${pokemonDetails.id}.gif`} />);
+      return (<PokemonCard key={pokemonDetails.id} name={pokemonDetails.name} types={pokemonDetails.types} image={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${pokemonDetails.id}.gif`} />);
     })
   };
 

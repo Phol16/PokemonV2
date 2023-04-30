@@ -61,8 +61,8 @@ const PokemonCard = ({ name, image, types }: PokemonInfoProps) => {
       <main className=' bg-azure  w-full flex flex-col items-center gap-3 py-8 px-4 rounded-lg'>
         <h1 className='textShadow'>{name[0].toUpperCase()+name.substring(1)}</h1>
         <section className='flex gap-3'>
-          {types.map((element) => (
-            <p className='px-3 py-1 rounded-full shadow-sm shadow-black' style={{backgroundColor:`${handleColor(element.type.name)}`}}>{element.type.name[0].toUpperCase()+element.type.name.substring(1)}</p>
+          {types.map((element,index) => (
+            <p key={index} className='px-3 py-1 rounded-full shadow-sm shadow-black' style={{backgroundColor:`${handleColor(element.type.name)}`}}>{element.type.name[0].toUpperCase()+element.type.name.substring(1)}</p>
           ))}
         </section>
       </main>

@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import charizard from '../public/charizard.svg'
-import bulbasur from '../public/bulbasur.svg'
-import blastoise from '../public/blastoise.svg'
+import charizard from '@/public/charizard.svg'
+import bulbasur from '@/public/bulbasur.svg'
+import blastoise from '@/public/blastoise.svg'
 
 const buttonInfo = [
   {
@@ -23,8 +23,8 @@ export default async function Home() {
       <h2 className="textShadow">This is the pokeDex.</h2>
       <main className="flex gap-2">
         {
-          buttonInfo.map((element)=>(
-        <button className="bg-azure p-3 rounded-full hover:bg-sky-900 text-sm lg:text-lg">
+          buttonInfo.map((element,index)=>(
+        <button key={index} className="bg-azure p-3 rounded-full hover:bg-sky-900 text-sm lg:text-lg">
         <Link href={element.redirect}>{element.label}</Link>
         </button>
           ))

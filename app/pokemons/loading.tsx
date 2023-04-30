@@ -2,7 +2,7 @@ import React from 'react'
 
 const Loading = () => {
   return (
-    <div>Loading...</div>
+    <div className='w-screen h-[svh] text-2xl flex -justify-center items-center'>loading...</div>
   )
 }
 
