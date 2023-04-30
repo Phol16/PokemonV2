@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+  --babyPowder: #FDFFFC;
+  --azure: #009FB7;
+}
+html,
+body {
+  position: relative;
+  min-width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+.textShadow {
+  text-shadow: 1px 1px 4px black;
+}
