@@ -56,9 +56,10 @@ const PokemonCard = ({ name, image, types }: PokemonInfoProps) => {
     return  typeColors[type as keyof typeColors]
   }
   return (
-    <div className=' relative w-[200px] flex flex-col items-center justify-end hover:-translate-y-1 transition'>
-      <Image src={image} width={20} height={20}  alt='Photo' className='relative top-5 w-20 ' />
-      <main className=' bg-azure  w-full flex flex-col items-center gap-3 py-8 px-4 rounded-lg'>
+    <div className='group'>
+    <div className=' relative w-[200px] flex flex-col items-center justify-end group-hover:-translate-y-1 transition cursor-pointer'>
+      <Image src={image} width={60} height={80} alt='Photo' className='relative top-5 aspect-auto' />
+      <main className=' bg-azure group-hover:bg-sky-600 w-full flex flex-col items-center gap-3 py-7 px-1 rounded-lg'>
         <h1 className='textShadow'>{name[0].toUpperCase()+name.substring(1)}</h1>
         <section className='flex gap-3'>
           {types.map((element,index) => (
@@ -66,6 +67,7 @@ const PokemonCard = ({ name, image, types }: PokemonInfoProps) => {
           ))}
         </section>
       </main>
+    </div>
     </div>
   );
 };
