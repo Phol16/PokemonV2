@@ -7,7 +7,7 @@ import blastoise from '@/public/blastoise.svg'
 const buttonInfo = [
   {
     label:'All Pokemons',
-    redirect:'/pokemons'
+    redirect:'/pokemons?offset=0'
   },
   {
     label:'Pokemon Types',
