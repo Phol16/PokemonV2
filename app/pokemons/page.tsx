@@ -22,6 +22,7 @@ type pokemonType = {
 };
 
 export default function Pokemons({ searchParams }: searchParamsProp) {
+  const offset = searchParams.offset * 20;
   const dispatch = useDispatch();
   const [pokemons, setPokemons] = useState<pokemonType>({
     next: '',
@@ -34,7 +35,6 @@ export default function Pokemons({ searchParams }: searchParamsProp) {
     try {
       setIsLoading(true);
       const fetchPokemonData = async () => {
-        const offset = searchParams.offset * 20;
         const pokemon = await fetchPokemon(offset);
         setPokemons(pokemon);
       };
@@ -44,7 +44,7 @@ export default function Pokemons({ searchParams }: searchParamsProp) {
     } finally {
       setIsLoading(false);
     }
-  }, []);
+  }, [offset]);
 
   const fetchEachPokemon = (results: [{ name: string; url: string }]) => {
     return results.map(async (e) => {
