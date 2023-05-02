@@ -7,7 +7,7 @@ type PokemonInfoProps = {
   types: Record<string, any>[];
 };
 
-type typeColors = {
+export type TypeColors = {
   normal: string;
   fighting: string;
   flying: string;
@@ -53,7 +53,7 @@ export const typeColors = {
 
 const PokemonCard = ({ name, image, types }: PokemonInfoProps) => {
   const handleColor = (type: string) => {
-    return typeColors[type as keyof typeColors];
+    return typeColors[type as keyof TypeColors];
   };
   return (
     <div className='group'>
@@ -73,7 +73,7 @@ const PokemonCard = ({ name, image, types }: PokemonInfoProps) => {
             {types.map((element, index) => (
               <p
                 key={index}
-                className='px-3 py-1 rounded-full shadow-sm shadow-black'
+                className='px-3 py-1 rounded-full shadow-sm shadow-black font-medium textShadow'
                 style={{ backgroundColor: `${handleColor(element.type.name)}` }}
               >
                 {element.type.name[0].toUpperCase() +

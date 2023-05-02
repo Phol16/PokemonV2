@@ -1,11 +1,13 @@
 'use client';
 
-import { fetchPokemon } from '@/libs/fetchPokemons';
-import PokemonCard from '../../components/PokemonCard';
-import { fetchPokemonDetails } from '@/libs/fetchPokemonDetails';
 import { ReactNode, useEffect, useState } from 'react';
-import Link from 'next/link';
+import { useDispatch } from 'react-redux';
+import { storePokemonData } from '@/libs/store/features/pokemonData/pokemonSlice';
+import { fetchPokemon } from '@/libs/fetchPokemons';
+import { fetchPokemonDetails } from '@/libs/fetchPokemonDetails';
 import { BiLeftArrow, BiRightArrow } from 'react-icons/bi';
+import PokemonCard from '../../components/PokemonCard';
+import Link from 'next/link';
 
 type searchParamsProp = {
   searchParams: {
@@ -20,9 +22,7 @@ type pokemonType = {
 };
 
 export default function Pokemons({ searchParams }: searchParamsProp) {
-  const [selectedPokemon, setSelectedPokemon] = useState<Record<string, any>>({
-    name: 'hello',
-  });
+  const dispatch = useDispatch();
   const [pokemons, setPokemons] = useState<pokemonType>({
     next: '',
     previous: '',
@@ -50,10 +50,11 @@ export default function Pokemons({ searchParams }: searchParamsProp) {
     return results.map(async (e) => {
       const pokemonDetails = await fetchPokemonDetails(e.url);
       return (
-        <div
+        <button
+          type='button'
           key={pokemonDetails.id}
           onClick={() => {
-            setSelectedPokemon(pokemonDetails);
+            dispatch(storePokemonData(pokemonDetails))
           }}
         >
           <PokemonCard
@@ -61,7 +62,7 @@ export default function Pokemons({ searchParams }: searchParamsProp) {
             types={pokemonDetails.types}
             image={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${pokemonDetails.id}.gif`}
           />
-        </div>
+        </button>
       );
     });
   };

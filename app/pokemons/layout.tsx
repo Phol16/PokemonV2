@@ -27,7 +27,7 @@ export default function PokemonLayout({
       <Image
         src={pokeBall}
         alt='BGImage'
-        className='fixed w-[300px] 2xl:w-[500px] -z-10 brightness-75 bottom-20 -left-10 rotate-[-25deg]'
+        className='fixed w-[300px] 2xl:w-[500px] -z-10 brightness-75 bottom-20 left-8 rotate-[-25deg]'
       />
     </div>
   );
