@@ -56,8 +56,8 @@ const PokemonDetails = () => {
               <section className='p-5'>
                 <h1 className='text-lg font-semibold'>Moves:</h1>
                 <main className='flex gap-2 flex-wrap p-1'>
-                  {pokemonDetails.moves.map((e: { move: { name: string } }) => (
-                    <p className='bg-slate-700 p-3 w-40 rounded-lg m-auto'>
+                  {pokemonDetails.moves.map((e: { move: { name: string } },index:number) => (
+                    <p key={index} className='bg-slate-700 p-3 w-40 rounded-lg m-auto'>
                       {e.move.name}
                     </p>
                   ))}
