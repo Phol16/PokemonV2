@@ -24,13 +24,10 @@ export default async function Home() {
       <h2 className='textShadow'>This is the pokeDex.</h2>
       <main className='flex gap-2'>
         {buttonInfo.map((element, index) => (
-          <Link href={element.redirect}>
-          <button
-            key={index}
-            className='bg-azure p-3 rounded-full hover:bg-sky-900 text-sm lg:text-lg '
-          >
-            {element.label}
-          </button>
+          <Link key={index} href={element.redirect}>
+            <button className='bg-azure p-3 rounded-full hover:bg-sky-900 text-sm lg:text-lg '>
+              {element.label}
+            </button>
           </Link>
         ))}
       </main>
