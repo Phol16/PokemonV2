@@ -16,7 +16,7 @@ const PokemonDetails = () => {
   };
 
   return (
-    <div className=' w-full h-[calc(100vh-150px)] border rounded-md overflow-hidden'>
+    <div className=' w-full h-[calc(100vh-140px)] border rounded-md overflow-hidden'>
       <main className=' w-full h-full flex flex-col justify-center items-center'>
         {pokemonDetails.name ? (
           <main className='w-full h-full flex flex-col items-center'>
