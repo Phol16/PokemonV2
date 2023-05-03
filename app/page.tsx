@@ -11,7 +11,7 @@ const buttonInfo = [
   },
   {
     label: 'Pokemon Types',
-    redirect: '/types',
+    redirect: '/pokemonTypes',
   },
 ];
 

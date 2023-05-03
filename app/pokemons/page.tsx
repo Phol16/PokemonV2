@@ -48,27 +48,37 @@ export default function Pokemons({ searchParams }: searchParamsProp) {
 
   const fetchEachPokemon = (results: [{ name: string; url: string }]) => {
     return results.map(async (e) => {
-      const pokemonDetails = await fetchPokemonDetails(e.url);
+      if (e.url !== '#') {
+        const pokemonDetails = await fetchPokemonDetails(e.url);
+        return (
+          <button
+            type='button'
+            key={pokemonDetails.id}
+            onClick={() => {
+              dispatch(storePokemonData(pokemonDetails));
+            }}
+          >
+            <PokemonCard
+              name={pokemonDetails.name}
+              types={pokemonDetails.types}
+              image={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${pokemonDetails.id}.gif`}
+            />
+          </button>
+        );
+      }
       return (
-        <button
-          type='button'
-          key={pokemonDetails.id}
-          onClick={() => {
-            dispatch(storePokemonData(pokemonDetails))
-          }}
+        <div
+          key={'loading'}
+          className='w-full h-[50%] font-semibold text-2xl flex justify-center items-center'
         >
-          <PokemonCard
-            name={pokemonDetails.name}
-            types={pokemonDetails.types}
-            image={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${pokemonDetails.id}.gif`}
-          />
-        </button>
+          Loading...
+        </div>
       );
     });
   };
 
   return (
-    <div className='w-[70%] m-auto'>
+    <div className='w-[80%] m-auto'>
       {!isLoading ? (
         <>
           <main className='flex justify-center items-center'>
@@ -77,36 +87,36 @@ export default function Pokemons({ searchParams }: searchParamsProp) {
             </section>
           </main>
           <footer className='flex gap-2 justify-center py-5'>
-            <button
-              className={` ${
-                pokemons.previous === null ? 'hidden' : 'flex'
-              } items-center gap-1 bg-slate-700 px-3 py-2 rounded-full hover:bg-slate-500`}
+            <Link
+              href={{
+                pathname: '/pokemons',
+                query: { offset: Number(searchParams.offset) - 1 },
+              }}
             >
-              <BiLeftArrow />
-              <Link
-                href={{
-                  pathname: '/pokemons',
-                  query: { offset: Number(searchParams.offset) - 1 },
-                }}
+              <button
+                className={` ${
+                  pokemons.previous === null ? 'hidden' : 'flex'
+                } items-center gap-1 bg-slate-700 px-3 py-2 rounded-full hover:bg-slate-500`}
               >
+                <BiLeftArrow />
                 Prev
-              </Link>
-            </button>
-            <button
-              className={`${
-                pokemons.next === null ? 'hidden' : 'flex'
-              } items-center gap-1 bg-slate-700 px-3 py-2 rounded-full hover:bg-slate-500`}
+              </button>
+            </Link>
+            <Link
+              href={{
+                pathname: '/pokemons',
+                query: { offset: Number(searchParams.offset) + 1 },
+              }}
             >
-              <Link
-                href={{
-                  pathname: '/pokemons',
-                  query: { offset: Number(searchParams.offset) + 1 },
-                }}
+              <button
+                className={`${
+                  pokemons.next === null ? 'hidden' : 'flex'
+                } items-center gap-1 bg-slate-700 px-3 py-2 rounded-full hover:bg-slate-500`}
               >
                 Next
-              </Link>
-              <BiRightArrow />
-            </button>
+                <BiRightArrow />
+              </button>
+            </Link>
           </footer>
         </>
       ) : (

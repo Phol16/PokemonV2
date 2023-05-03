@@ -1,5 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
+import replacedImg from '../public/vercel.svg'
+import replacedImg1 from '../public/next.svg'
 
 type PokemonInfoProps = {
   name: string;
@@ -59,7 +61,7 @@ const PokemonCard = ({ name, image, types }: PokemonInfoProps) => {
     <div className='group'>
       <div className=' relative w-[200px] flex flex-col items-center justify-end group-hover:-translate-y-1 transition cursor-pointer'>
         <Image
-          src={image}
+          src={image !== 'null' ? image : replacedImg1}
           width={60}
           height={80}
           alt='Photo'

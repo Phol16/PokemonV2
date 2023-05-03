@@ -1,6 +1,10 @@
 import React from 'react'
 
 export const fetchPokemonDetails = async(url:string) => {
-  const res = await fetch(`${url}`).then((res)=>res.json());
-  return res
+  try {
+    const res = await fetch(`${url}`).then((res)=>res.json());
+    return res
+  } catch (error) {
+    console.log(error)
+  }
 }
